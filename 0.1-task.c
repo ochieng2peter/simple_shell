@@ -53,7 +53,7 @@ void execute_command(char *command)
 
 /**
  * main - Entry point
- * Return: 0 upon successful run
+ * Return: upon successful run
  */
 
 int main(void)
