@@ -51,6 +51,11 @@ void execute_command(char *command)
 	}
 }
 
+/**
+ * main - Entry point
+ * Return: upon successful run
+ */
+
 int main(void)
 {
 	char command[MAX_COMMAND_LENGTH];
