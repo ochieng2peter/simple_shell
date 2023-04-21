@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * execute_command - Executes a command entered by the user.
+ * execute_command - function executes a command entered by the user.
  * @command: The command to be executed.
  *
  * Return: None.
