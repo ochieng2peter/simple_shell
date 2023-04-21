@@ -30,7 +30,7 @@ void execute_command(char *command)
 		args[i] = NULL;
 		if (strcmp(args[0], "exit") == 0)
 		{
-			printf("Exiting the shell...\n\n");
+			printf("Exiting the shell...\n");
 			_exit(EXIT_SUCCESS);
 		}
 		/* Execute the command */
@@ -49,30 +49,4 @@ void execute_command(char *command)
 		/* Wait for child process to complete */
 		wait(&status);
 	}
-}
-
-/**
- * main - Entry point
- * Return: 0 upon successful run
- */
-
-int main(void)
-{
-	char command[MAX_COMMAND_LENGTH];
-
-	while (1)
-	{	/* Display prompt */
-		printf("peter_trevor# ");
-		fflush(stdout);		/* Read user input */
-
-		if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
-		{	/* End of file (Ctrl+D) encountered, exit shell */
-			printf("\n");
-			exit(EXIT_SUCCESS);
-		}	/* Remove trailing newline character */
-		command[strcspn(command, "\n")] = '\0';
-		/* Execute the command */
-		execute_command(command);
-	}
-	return (0);
 }
