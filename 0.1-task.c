@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * my_strcmp - Compares two strings.
  * @s1: The first string to compare.
@@ -7,7 +6,6 @@
  * Return:The difference between the first pair of differing
  *              characters, or 0 if the strings are equal.
  */
-
 int my_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && (*s1 == *s2))
@@ -17,21 +15,18 @@ int my_strcmp(const char *s1, const char *s2)
 	}
 	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }
-
 /**
  * execute_command - Executes a command entered by the user.
  * @command: The command to be executed.
  * @str_cmp: function pointer to my_strcmp
  * Return: None.
  */
-
 void execute_command(char *command, int (*str_cmp)(const char *, const char *))
 {
 	pid_t pid;
 	int status;
 
 	pid = fork();
-
 	if (pid == 0)/* Child process */
 	{
 		char *args[MAX_ARGS_LENGTH];
@@ -46,9 +41,16 @@ void execute_command(char *command, int (*str_cmp)(const char *, const char *))
 			token = strtok(NULL, " \t\n");
 		}
 		args[i] = NULL;
+
+		if (str_cmp(args[0], "printenv") == 0)
+		{
+			print_env();
+			_exit(EXIT_SUCCESS);
+		}
 		if (str_cmp(args[0], "exit") == 0)
 		{
-			printf("Exiting the shell...\n");
+			write(STDOUT_FILENO,
+					"Exiting the shell...\n", sizeof("Exiting the shell...\n"));
 			_exit(EXIT_SUCCESS);
 		}
 		/* Execute the command */
