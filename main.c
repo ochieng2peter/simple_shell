@@ -26,6 +26,11 @@ int main(void)
 		command[strcspn(command, "\n")] = '\0';
 		/* Execute the command */
 		execute_command(command, my_strcmp);
+		/* Handle the printenv command */
+		if (strcmp(command, "printenv") == 0)
+		{
+			print_env();
+		}
 	}
 	return (0);
 }
