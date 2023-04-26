@@ -32,16 +32,14 @@ void execute_command(char *command, int (*str_cmp)(const char *, const char *))
 		char *args[MAX_ARGS_LENGTH];
 		int i = 0;
 		char *token;
-		/* Tokenize the command string into arguments */
-		token = strtok(command, " \t\n");
 
+		token = strtok(command, " \t\n");
 		while (token != NULL)
 		{
 			args[i++] = token;
 			token = strtok(NULL, " \t\n");
 		}
 		args[i] = NULL;
-
 		if (str_cmp(args[0], "printenv") == 0)
 		{
 			print_env();
@@ -53,9 +51,7 @@ void execute_command(char *command, int (*str_cmp)(const char *, const char *))
 					"Exiting the shell...\n", sizeof("Exiting the shell...\n"));
 			_exit(EXIT_SUCCESS);
 		}
-		/* Execute the command */
 		execvp(args[0], args);
-		/* If execvp() returns, it means the command execution failed */
 		perror("Command execution failed");
 		exit(EXIT_FAILURE);
 	}
